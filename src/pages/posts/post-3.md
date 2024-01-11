@@ -7,5 +7,5 @@ image:
     url: "https://docs.astro.build/assets/rays.webp"
     alt: "Miniatura de los rayos de Astro."
 pubDate: 2022-07-15
-tags: ["astro", "aprender en público", "contratiempos", "comunidad"]
+tags: ["index", "blog", "about"]
 ---

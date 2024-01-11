@@ -1,4 +1,5 @@
 ---
+import BaseLayout from './BaseLayout.astro';
 const { frontmatter } = Astro.props;
 ---
 
@@ -7,9 +8,12 @@ const { frontmatter } = Astro.props;
     color: white;
     background-color: black;
     text-align: center;
+    width: 100vh;
+    height: 100vh;
   }
 </style>
-<h1>{frontmatter.title}</h1>
+<BaseLayout pageTitle={frontmatter.title}>
+
 <p>{frontmatter.pubDate.slice(0, 10)}</p>
 <p><em>{frontmatter.description}</em></p>
 <p>Escrito por: {frontmatter.author}</p>
@@ -18,6 +22,5 @@ const { frontmatter } = Astro.props;
 <li>
   Tags: {frontmatter.tags[0]}{" "},{frontmatter.tags[1]},{" "}{frontmatter.tags[2]}
 </li>
-
-
 <slot />
+</BaseLayout>
