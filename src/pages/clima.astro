@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const apikey = "a088a59aab989ff4347dc90b91d79068";
+let pais = "Mexico City";
+const estado = "Puebla";
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${pais},${estado}}&APPID=${apikey}`;
+
+const data = await fetch(url).then((response) => response.json());
+
+let ciudad = data["name"];
+ciudad = ciudad.toUpperCase();
+let tempe = data["main"]["temp"]/ 10;
+tempe = Math.trunc(tempe);
+const dictionary = {
+  "clear sky": "Cielo Despejado",
+  "cloudy": "Nublado",
+  "rain": "Lluvia",
+  "sunny": "Soleado"
+};
+let descr = data["weather"][0]["description"];
+if (descr in dictionary) {
+  descr = dictionary[descr];
+}
+
+---
+
+<BaseLayout>
+  <div class="container">
+    <h1 class="Titulo-clima"> {ciudad}</h1>
+    <p class="temp">Temperatura: {tempe}°C </p>
+    <img src="../../public/soliado.png" width="300" alt="nube" />
+    <p class="desc">{descr}</p>
+  </div>
+  
+</BaseLayout>
+
+
+
+
+
+
+<style>
+  .Titulo-clima{
+    font-size: 65px;
+  }
+  .temp{
+    font-size: 25px;
+  }
+  .desc{
+    font-size: 23px;
+    margin-bottom: 4em;
+  }
+  image {
+    color: white;
+    background-color: white;
+  }
+  .container{
+    text-align: center;
+  }
+</style>
